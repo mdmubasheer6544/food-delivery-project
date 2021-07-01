@@ -1,0 +1,106 @@
+<head>
+        <!-- <link rel="stylesheet" href="./css/signup.css"> -->
+        <link rel="stylesheet" href="../css/newSignUp.css">
+</head>
+
+<div class="singupcontainer">
+        <!-- <form method="post" name="singupform" class="singupform" > 
+
+            <h1 class="signUpheading">Sign Up</h1>
+            <dl>
+                <dt>Name</dt>
+                <dd><input type="text" id="singUpName" ng-model="Datas.singUpName" class="signupInputs"
+                        placeholder="Enter your name"></dd>
+                <dt>Gender</dt>
+                <dd class="gender">Male <input type="radio" name="gender" id="gender" ng-model="Datas.signUpGender" value="Male"> Female <input type="radio"
+                        name="gender" ng-model="Datas.signUpGender" value="Female"></dd>
+                <dt>Address</dt>
+                <dd><textarea name="address" id="address" cols="30" rows="3" class="signupInputs"
+                        placeholder="Enter your address here..." ng-model="Datas.signUpAddress"></textarea></dd>
+
+                        <dt>Email</dt>
+                <dd><input type="email" id="singUpEmail" ng-model="Datas.singupEmail" class="signupInputs"
+                    placeholder="Enter your email address"></dd>
+                <dt>Phone</dt>
+                <dd><input type="text" id="singUpPhone" ng-model="Datas.singupPhone" class="signupInputs"
+                        placeholder="Enter your phone"></dd>
+                <dt>Password</dt>
+                <dd><input type="password" id="singUppassword" ng-model="Datas.singUppassword" class="signupInputs"
+                        placeholder="Enter your password"></dd>
+                <dt>Confirm Password</dt>
+                <dd><input type="password" id="password2" ng-model="singUppassword2" placeholder="Confirm your password"
+                        class="signupInputs"></dd>
+            </dl>
+            <button ng-click="insertRecord()" class="singUpBtn">Sing Up</button>
+            <a href="/#!userLogin">Log In</a>
+                
+        </form> -->
+        <div class="form-container">
+                <form id="form" class="form" ng-submit="signUpFrm.$valid" name="signUpFrm" novalidate>
+                        <h2>Register With Us</h2>
+                        <!-- <small ng-if="signUpFrm.$invalid">All fields are required..!!</small> -->
+                        <div class="form-control">
+                                <label for="username">UserName</label>
+                                <input type="text" name="username" ng-pattern="/^[A-Za-z\s]*$/" id="username"
+                                        ng-model="Datas.singUpName" placeholder="Enter User Name" required
+                                        ng-minlength="5" ng-maxlength="12">
+                                <small ng-if="signUpFrm.username.$invalid && signUpFrm.username.$dirty">Invalid Username
+                                        !</small>
+
+                        </div>
+                        <div class="form-control">
+                                <label for="email">Gender</label>
+                                <select ng-model="Datas.signUpGender" name="gender" required>
+                                        <option value="" selected="selected">Select Gender</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                </select>
+                                <small ng-if="signUpFrm.gender.$invalid && signUpFrm.gender.$touched">Please select your
+                                        gender!</small>
+                        </div>
+                        <div class="form-control">
+                                <label for="email">Address</label>
+                                <textarea name="address" placeholder="Enter Address..." ng-model="Datas.signUpAddress"
+                                        required></textarea>
+                                <small ng-if="signUpFrm.address.$invalid && signUpFrm.submit">Address is
+                                        Required!</small>
+                        </div>
+                        <div class="form-control">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/"
+                                        id="email" placeholder="Enter email" ng-model="Datas.singupEmail" required>
+                                <small ng-if="signUpFrm.email.$invalid && signUpFrm.email.$dirty">Inavlid Email!</small>
+                        </div>
+                        <div class="form-control">
+                                <label for="Number">Phone Number</label>
+                                <input type="text" ng-pattern="/^[7-9][0-9]{9}$/" name="phone" id="phone"
+                                        placeholder="Enter Phone Number" ng-model="Datas.singupPhone" required>
+                                <small ng-if="signUpFrm.phone.$invalid && signUpFrm.phone.$dirty">Invalid phone
+                                        no!</small>
+                        </div>
+                        <div class="form-control">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" placeholder="Enter password"
+                                        ng-model="Datas.singUppassword" required ng-minlength="6" ng-maxlength="10"
+                                        ng-attr-type="{{ showPassword ? 'text':'password'}}">
+                                <span class="eyesPassword" ng-click="toggleShowPassword()"
+                                        ng-class="{'fa fa-eye': showPassword,'fa fa-eye-slash': !showPassword}"></span>
+                                <span ng-messages="signUpFrm.password.$error" ng-if="signUpFrm.password.$dirty">
+                                        <small ng-message="required">Password is Required!</small>
+                                        <small ng-message="minlength">Password must be 6 char!</small>
+                                        <small ng-message="maxlength">Password atleast 10 char!</small>
+                                </span>
+                                <!-- <small>Error Msg!</small> -->
+                        </div>
+                        <div class="form-control">
+                                <label for="password">Confirm password</label>
+                                <input type="text" name="password2" id="password2" ng-model="Datas.password2"
+                                        compare-to="Datas.singUppassword" placeholder="Enter Password again" required>
+                                <small ng-if="signUpFrm.password2.$error.compareTo && signUpFrm.password2.$dirty">Password
+                                        not macthed!</small>
+                        </div>
+                        <button type="submit" ng-disabled="signUpFrm.$invalid" ng-click="insertRecord()">Sign
+                                Up</button>
+                </form>
+        </div>
+</div>

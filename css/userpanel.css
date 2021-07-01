@@ -1,0 +1,186 @@
+.singupcontainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.prof{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.heading{
+    padding: 18px 0;
+    border-bottom: 2px solid;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    background: #435a71;
+    color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+}
+.visibless{
+    visibility: hidden;
+}
+.editBtn{
+    position: absolute;
+    top: 31px;
+    right: 25px;
+    padding: 1px 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tblContainer{
+    margin: 50px;
+    max-height: 500px;
+    overflow: auto;
+}
+fieldset{
+    border:none;
+}
+.singupform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    width: 400px;
+    margin-top: 35px;
+    box-shadow: 5px 7px 30px rgb(0 0 0 / 60%), 5px 1px 6px rgb(0 0 0 / 60%);
+    border-radius: 20px;
+    background:#fff;
+}
+
+dt{
+    font-size: 16px;
+    padding: 10px;
+    font-weight: bold;
+}
+.gender{
+    margin-left: 30px;
+    font-size: 15px;
+}
+.signupInputs{
+    border: none;
+    border-bottom: 1px solid;
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    width: 100%;
+    background: transparent;
+    resize: none;
+}
+.signupInputs:focus{
+    outline: 0;
+}
+.singupform .saveBtn{
+    margin: 15px auto;
+    font-size: 20px;
+    padding: 5px 0px;
+    border-radius: 20px;
+    outline: none;
+    border: 0;
+    width: 110px;
+    cursor: pointer;
+    background: rgb(0, 102, 167);
+    color: #fff;
+}
+
+.field{
+    padding: 10px 0px;
+    width: 300px;
+    }
+    .field span{
+        padding: 20px 0px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+/* //tracke order table */
+progress{
+    width: 430px;
+    font-size: 10px;
+} 
+/* .Ordertable tr{
+    height: 80px;
+} */
+.Ordertable  #oderStatus{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+} 
+.Ordertable #oderStatus span{
+    font-size: 12px;
+    font-weight: bold;
+} 
+.progressBar{
+    position: relative;
+}
+
+.Ordertable .statusBar{
+/* display: flex;
+justify-content: space-between;
+position: absolute;
+width: 430px;
+top: 16px; */
+position: relative;
+width: 430px;
+top: 16px;
+}
+.statusBar .itembar{
+    border: 1px solid #e8e4e4;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+}
+.statusBar .itembar{
+    position: absolute;
+    top: 3px;
+    left: -2px;
+}
+.statusBar .itembar2{
+    position: absolute;
+    top: 3px;
+    left: 50%;
+}
+.statusBar .itembar3{
+    position: absolute;
+    left: 96%;
+    top: 3px;
+}
+
+.statusBar .itembar1{
+background:#0994c1;
+}
+.Ordertable .cancelBtn{
+    background: #e42222;
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+}
+.Ordertable .track{
+    display: flex;
+    justify-content: space-between;
+}
+.fa-check-circle{
+    background: #fff;
+    color: rgb(9, 148, 193);
+    font-size: 18px;
+    font-weight: bold;
+    border:1px solid green;
+}
+.fa-truck{
+    font-size: 20px;
+    font-weight: bold;
+}

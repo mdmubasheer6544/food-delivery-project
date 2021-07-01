@@ -1,0 +1,116 @@
+<div class="container" ng-class="{blur:isClassvar}" >
+    <header id="foodheader">
+        <div class="admin">
+        </div>
+        <div class="searachbar">
+            <div class="combo">
+
+                <input type="text" name="Searchbox" id="search" placeholder="Search item here.." ng-model="dishName">
+                <div class="searchbtn">
+                    <button id="searchBtn " ng-click="getDetails(dishName)">Search</button>
+                </div>
+            </div>
+            <div class="logo">
+                <a href="#!userProf" id="prof"><i class="fas fa-user"></i></a>
+                <h3 ng-click="userPanel()">{{loginName.name}}</h3>
+                <div class="loginLink" >
+                    <div ng-if="isLoginVisible"><a href="#!userLogin">Login </a>|<a href="#!singUp"> Singup</a></div>
+                    <div ng-if="isLogoutVisible" ><span id="logout" ng-click="profile()">Log Out </span></div>
+              
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="foodleft" id="foodleft">
+        <h3>{{category |capitalize}}</h3>
+
+        <ul>
+            <li ng-repeat="recpt in recipes">
+
+                <img ng-src="{{recpt.imageUrl}}" alt="{{recpt.title}}">
+                <a href="" ng-click="CategoryDetails(recpt.recipe_id)">{{recpt.title}}</a>
+            </li>
+        </ul>
+    </section>
+
+
+    <section class="foodcenter" id="foodcenter" ng-repeat="item in contentData">
+        <div class="center">
+            <h3>{{item.title}}</h3>
+            <div class="centerMainImg">
+                <img ng-src="{{item.image_url}}" alt="{{item.title}}">
+            </div>
+            <p>Publisher:{{item.publisher}}</p>
+            <small>Recipt id: {{item.recipe_id}}</small>
+            <a href="{{item.source_url}}" target="_self">Read More...</a>
+
+        </div>
+        <form name="cardForm" ng-class="{'hideForAdmin':OrderhideAdmin}">
+            <div class="orderclass" id="orderId">
+                <strong>Price:{{item.price|currency:"&#8377;"}}</strong> <strong>Discount:10%</strong>
+                <div class="orderBtn">
+                    <a> <button ng-click="orderBox()">Order Now</button></a>
+                </div>
+            </div>
+            <div class="addqty">
+
+                <strong>Quantity: </strong>
+                    <div class="addqty2">
+                        <button ng-click="addQty(item.price,'minus')">-</button>
+                        <p>{{counter}}</p><button ng-click="addQty(item.price,'plus')">+</button>
+                    </div>
+                    <strong>Total Amount:{{tempTotal|currency:"&#8377;"}}</strong>
+
+            </div>
+        </form>
+        <div id="grediantClass">
+            <h4>Ingredients Contents:</h4>
+            <ul>
+                <li ng-repeat="grediant in ingrediants|unique:'grediant'">{{grediant}}</li>
+            </ul>
+
+        </div>
+    </section>
+
+
+    <section class="foodright" id="foodright">
+        <div class="categoryClass">
+            <h3>Item Categories</h3>
+            <ul>
+                <li ng-repeat="category in categoryCollection"><a href="" ng-click="getDetails(category)">{{category
+                        |capitalize}}</a></li>
+            </ul>
+        </div>
+    </section>
+    <footer id="foodfooter">
+        <div>
+            Md|Mubasheer|Development|Project<br>
+            &copy;Copy2021.All rights reserved.
+        </div>
+    </footer>
+</div>
+
+<!-- ///End container -->
+<div class="confirmOrder" ng-if="isVisible" ng-repeat="item in contentData">
+    
+    <form method="post" name="orderbooks"  novalidate>
+    <span id="crossIcon" ng-click="orderBox()"><i class="fas fa-times"></i></span>
+    <h2>Confirm your Order<span><i class="far fa-check-circle"></i></span></h2>
+    <ul>
+        <li>Product Name:<span>{{item.title}}</span></li>
+        <li>Product Price:<span>{{item.price|currency:"&#8377;"}}</span></li>
+        <li>Discount:<span>{{discount}}</span></li>
+        <li>Product Quantity:<span >{{counter}}</span> </li>
+        <li>Total Amount:<span >{{tempTotal|currency:"&#8377;"}}</span></li>
+        <li id="addList">Address:<span><textarea ng-model="data.address" name="addressss" required></textarea>
+        </span></li>
+       <div  ng-if="orderbooks.$submitted && orderbooks.addressss.$error.required" class="orderErr"><small>Address can not be empty.!</small></div> 
+    </ul>
+    <div class="confirmBtn">
+        <button  id="confirm" ng-click="orderBook(data)">Confirm</button>
+        <button id="cancel" ng-click="orderBox()">Cancel</button>
+    </div>
+</form>
+</div>

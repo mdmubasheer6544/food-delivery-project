@@ -1,0 +1,157 @@
+<head>
+    <link rel="stylesheet" href="../css/userpanel.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+</head>
+
+<div class="admin" ng-class="{slide:isSlide}">
+    <div class="adminContainer">
+        <div class="adminHeader" ng-init="isSlide=false">
+            <div class="hamberg"><span ng-click="isSlide=!isSlide"><i id="hamberg" ng-class="{'fas fa-times':isSlide,'fas fa-bars':!isSlide}"></i></span>
+            </div>
+            <div class="adminprof">
+                <a href="#!"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="adminMenu">
+        <div class="profile">
+            <span class="logoAdmin"><i class="fas fa-user"></i></span>
+            <span class="username">{{loginName.name}}</span>
+        </div>
+        <ul>
+            <li>
+                <div class="item">
+                    <div class="adminlogo"><i class="fas fa-home"></i></div><span><a href="/">Home</a></span>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="adminlogo"><i class="fas fa-id-card"></i></div><span ng-click="myProfile()"><a
+                            href="">Profile</a></span>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="adminlogo"><i class="fas fa-street-view"></i></div><span ng-click="trackVisible()"><a
+                            href="">Track
+                            Order</a></span>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="adminlogo"><i class="fas fa-id-card"></i></div><span ng-click="myOrders()"><a href="">My
+                            Orders
+                        </a></span>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="adminlogo"><i class="fas fa-sign-out-alt"></i></div><span ng-click="logOut()"><a
+                            href="">Log Out</a></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="tblDetails">
+        <div class="tblContainer">
+
+            <table class="Ordertable" ng-if="isMyOrders">
+                <tr>
+                    <th>Product Id</th>
+                    <th>Order Status</th>
+                    <th>Receipe Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Total Amount</th>
+                    <th>Customer Id</th>
+                    <th>Address</th>
+                    <th>Order Date</th>
+                </tr>
+                <tr ng-repeat=" order in userData">
+                    <td>{{order.order_id}}</td>
+                    <td>{{order.order_status}}</td>
+                    <td>{{order.recipe_name}}</td>
+                    <td>{{order.price}}</td>
+                    <td>{{order. qty}}</td>
+                    <td>{{order.discount}}</td>
+                    <td>{{order.totalAmount}}</td>
+                    <td>{{order.customer_id}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.orderDate|date:"yyyy-MM-dd"}}</td>
+                </tr>
+            </table>
+
+            <!-- //Track Order Section -->
+
+            <table class="Ordertable" ng-if="istrackVisible">
+                <tr>
+                    <th>Cancel Order</th>
+                    <th>Order Date</th>
+                    <th>Receipe Name</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th class="track">Order Tracker<span><i class="fas fa-truck"></i></span></th>
+
+                </tr>
+                <tr ng-repeat=" order in progressData">
+                    <td><button ng-click="deleteRecord(order.order_id)" class="cancelBtn">Cancel Order</button></td>
+                    <td>{{order.orderDate|date:"yyyy-MM-dd"}}</td>
+                    <td>{{order.recipe_name}}</td>
+                    <td>{{order. qty}}</td>
+                    <td>{{order.totalAmount}}</td>
+                    <td class="progressBar">
+                        <div class="statusBar">
+                            <progress max="{{order.max}}" value="{{order.dynamic}}"></progress>
+                            <div class="itembar itembar1"></div>
+                            <div class="itembar itembar2" ng-style="{'background':(order.dynamic==50)||(order.dynamic==100)?'#0994c1':''}"></div>
+                            <div class="itembar itembar3" ng-class="{'far fa-check-circle':(order.dynamic==100)}"></div>
+                        </div>
+                        <div id="oderStatus">
+                            <span>Order Placed</span>
+                            <span>Order Accepted</span>
+                            <span>Order Delivered</span>
+                    </td>
+                </tr>
+        </div>
+        </table>
+    </div>
+
+
+
+    <div ng-if="isMyProfile" class="prof">
+        <form method="post" name="singupform" class="singupform">
+            <div class="heading">
+                <h1>My Profile</h1>
+                <button ng-click="editProfile()" class="editBtn">Edit Profile</button>
+            </div>
+            <fieldset ng-disabled="isClicked">
+
+                <div class="field">
+                    <span>User Name</span>
+                    <input type="text" id="singUpName" ng-model="userDetails.name" class="signupInputs">
+                </div>
+                <div class="field">
+                    <span> Address</span>
+                    <textarea name="address" id="address" cols="30" rows="3" class="signupInputs"
+                        ng-model="userDetails.address" required></textarea>
+                </div>
+                <div class="field">
+                    <span> Email</span>
+                    <input type="email" id="singUpEmail" ng-model="userDetails.email" class="signupInputs">
+                </div>
+                <div class="field">
+                    <span> Phone</span>
+                    <input type="text" id="singUpPhone" ng-model="userDetails.phone" class="signupInputs">
+                </div>
+                <div class="field">
+                    <span> Password</span>
+                    <input type="password" id="singUppassword" ng-model="userDetails.password" class="signupInputs">
+                </div>
+            </fieldset>
+            <button ng-click="updateUserDetails(userDetails)" ng-class="{'visibless':!isSaveVisible}"
+                class="saveBtn">Save</button>
+        </form>
+    </div>
+</div>
+</div>

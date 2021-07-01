@@ -1,0 +1,125 @@
+.adminHeader{
+    top: 0px;
+    width: 100%;
+    z-index: 99;
+    background: rgb(0, 102, 167);
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+}
+.hamberg i{
+    font-size: 30px;
+    cursor: pointer;
+    color:#fff;
+}
+.hamberg span{
+    position: absolute;
+    left: 3px;
+    top: 4px;
+}
+.adminprof a{
+    padding: 9px 12px;
+    background: #fff;
+    border-radius: 50%;
+    font-size: 20px;
+    text-align: center;
+}
+.profile{
+    padding: 15px;
+    background: rgb(0, 102, 167);
+}
+.profile .logoAdmin{
+    margin-left: 4px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    color: rgb(0, 102, 167);;
+}
+.logoAdmin i{
+    font-size: 20px;
+}
+.username{
+    font-weight: bold;
+    font-size: 20px;
+    color:#fff;
+}
+.adminMenu{
+    width: 300px;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    /* box-shadow: rgb(0 0 0 / 69%) 1rem 0px 0.87rem 0px; */
+    box-shadow: -2px 14px 7px 6px;
+
+    background:rgba(216, 216, 216, 0.26);
+    transform: translateX(-100%);
+
+}
+
+
+.adminMenu ul li{
+    font-size: 20px;
+   
+}
+.adminMenu ul li :hover{
+    background:rgb(184, 182, 182);
+}
+.adminMenu ul li a{
+    text-decoration: none;
+    color:#333;
+}
+.item{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+.item .adminlogo{
+    margin-right: 20px;
+}
+.tblContainer{
+    margin: 50px 20px;
+    max-height: 500px;
+    overflow: auto;
+}
+.tblDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin{
+    transition: transform 0.5s ease;
+}
+.slide{
+    transform: translate(300px);
+}
+
+.Ordertable{
+    width: 100%;
+    background: #fff;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
+}
+
+.Ordertable th, .Ordertable td{
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    text-align: justify;
+}
+.Ordertable td button{
+    background: rgb(0, 102, 167);
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 3px;
+    outline: 0;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+}
+.Ordertable tr td span{
+    color: green;
+    font-size: 20px;
+    padding: 5px;
+}

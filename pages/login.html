@@ -1,0 +1,19 @@
+<div class="logincontainer">
+    <div class="login">
+        <form name="loginform" class="loginform" method="post">
+            <h1>Log In</h1>
+            <small ng-if="isMachedName">Invalid Credentials!</small>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" id="login" ng-model="loginDetails.userName" placeholder="Enter your user name">
+                </dd>
+                <dt>Password</dt>
+                <dd><input type="password" id="password" ng-model="loginDetails.loginpassword"
+                        placeholder="Enter your password" ng-attr-type="{{ showPassword ? 'text':'password'}}"></dd>
+                        <span ng-click="toggleShowPassword()" class="passShow" ng-class="{'fa fa-eye': showPassword,'fa fa-eye-slash': !showPassword}"></span>
+            </dl>
+            <button ng-click="signIn(loginDetails)">log In</button>
+            <a href="#!singUp">Sing Up</a>
+        </form>
+    </div>
+</div>
