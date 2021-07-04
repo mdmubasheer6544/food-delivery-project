@@ -97,6 +97,7 @@ app.controller("fetchController", function ($scope, $http, $timeout, $location, 
     }
 
     $scope.customerid = ischeckUser.customer_id;
+
     // Sing Up Request
     $scope.insertRecord = function () {
         $scope.customerid = Math.floor(Math.random() * (1000) + 100);
@@ -109,14 +110,14 @@ app.controller("fetchController", function ($scope, $http, $timeout, $location, 
             password: $scope.Datas.singUppassword,
             customer_id: $scope.customerid
         })
-        $http.post("/singUps", DatasObj);
+        $http.post("/user/signUp", DatasObj);
         $location.path("/userLogin");
     }
 
 
     $scope.isMachedName = false;
     $scope.signIn = function (loginDetails) {
-        $http.post("/Logins", loginDetails)
+        $http.post("/user/Login", loginDetails)
             .then(res => {
                 if (res.data == 0) {
                     $scope.isMachedName = true;
@@ -179,8 +180,7 @@ app.controller("fetchController", function ($scope, $http, $timeout, $location, 
                 customer_id: $scope.customerid,
                 Date: year + "-" + month + "-" + day
             })
-
-            $http.post('/bookOrder', Objdata);
+            $http.post('/order/bookOrder', Objdata);
             if (ischeckUser.name != "Guest") {
                 $scope.isVisible = false;
                 $scope.isClassvar = false;
@@ -233,7 +233,7 @@ app.controller('adminController', function ($scope, $http, $location) {
     $scope.orderDetails = []
     $scope.statuss;
     $scope.adminDetails = function () {
-        $http.get("/admin")
+        $http.get("order/ordersummary")
             .then(res => {
                 $scope.orderDetails = res.data;
 
@@ -250,7 +250,7 @@ app.controller('adminController', function ($scope, $http, $location) {
                 orderid: order_id
 
             }
-            $http.post('/changeStatus', currentStatus)
+            $http.post('order/changeStatus', currentStatus)
             $scope.adminDetails();
             $scope.Orderhistory();
         }
@@ -259,7 +259,7 @@ app.controller('adminController', function ($scope, $http, $location) {
     $scope.isOrderDetails = true;
     $scope.Orderhistory = function () {
         $scope.orderHistory = [];
-        $http.get("/Orderhistory")
+        $http.get("order/Orderhistory")
             .then(res => {
                 $scope.orderHistory = res.data;
             })
@@ -297,7 +297,7 @@ app.controller('userController', function ($scope, $http, $location) {
     let customer = {
         customerId: $scope.loginName.customer_id
     }
-    $http.post("/userdetails", customer)
+    $http.post("/user/userdetails", customer)
         .then(res => {
             $scope.userData = res.data;
         })
@@ -314,7 +314,7 @@ app.controller('userController', function ($scope, $http, $location) {
     ///Get Data on current Date base with track order///
     $scope.CurrentOrder = function () {
         $scope.progressData = [];
-        $http.post("/getDate", queryDate)
+        $http.post("order/currentDateOrder", queryDate)
             .then(res => {
                 res.data.map(value => {
                     let tempObj = {
@@ -367,7 +367,7 @@ app.controller('userController', function ($scope, $http, $location) {
         let customer = {
             customerId: $scope.loginName.customer_id
         }
-        $http.post("/showProflDetails", customer)
+        $http.post("/user/showProflDetails", customer)
             .then(res => {
                 $scope.userDetails = res.data[0];
             })
@@ -387,7 +387,7 @@ app.controller('userController', function ($scope, $http, $location) {
             password: userDetails.password,
             customer_id: $scope.loginName.customer_id
         }
-        $http.post("/updateUserDetails", data);
+        $http.post("/user/updateUserDetails", data);
         alert("Record has been updated..!")
         $scope.isSaveVisible = false;
         $scope.showProf();
@@ -419,11 +419,10 @@ app.controller('userController', function ($scope, $http, $location) {
 
     ///cancel order function
     $scope.deleteRecord = function (order_id) {
-        debugger
         let orderid = {
             order_id: order_id
         }
-        $http.post("/cancelOrder", orderid);
+        $http.post("/order/cancelOrder", orderid);
         alert("Cancel Your order.!");
         $scope.CurrentOrder();
     }
