@@ -105,7 +105,7 @@ dt{
 
 /* //tracke order table */
 progress{
-    width: 430px;
+    width: 470px;
     font-size: 10px;
 } 
 /* .Ordertable tr{
@@ -123,6 +123,7 @@ progress{
 } 
 .progressBar{
     position: relative;
+
 }
 
 .Ordertable .statusBar{
@@ -150,11 +151,11 @@ top: 16px;
 .statusBar .itembar2{
     position: absolute;
     top: 3px;
-    left: 50%;
+    left: 55%;
 }
 .statusBar .itembar3{
     position: absolute;
-    left: 96%;
+    left: 107%;
     top: 3px;
 }
 
@@ -169,6 +170,17 @@ background:#0994c1;
     border: 1px solid #dcdcdc;
     cursor: pointer;
 }
+
+.Ordertable .cancelBtn:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor:not-allowed;
+}
+
+
+
 .Ordertable .track{
     display: flex;
     justify-content: space-between;
@@ -184,3 +196,5 @@ background:#0994c1;
     font-size: 20px;
     font-weight: bold;
 }
+
+

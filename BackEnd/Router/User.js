@@ -48,10 +48,11 @@ router.post("/signUp", (req, res) => {
 router.post("/userdetails", (req, res) => {
     let customerid = req.body.customerId;
     conn.query(
-      "select * from order_tbl where customer_id= ?",
+      "select * from login_tbl where customer_id= ?",
       [customerid],
       (err, rows, fields) => {
         res.send(rows);
+       
       }
     );
   });

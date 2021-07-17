@@ -5,27 +5,24 @@ const router = express.Router();
 router.use(bodyparser.urlencoded({ extended: true }));
 router.use(bodyparser.json());
 
+//  order book Request
+router.post("/bookOrder", (req, res) => {
+  let Orderdata = {
+    recipe_name: req.body.recipe_name,
+    qty: req.body.qty,
+    price: req.body.price,
+    address: req.body.address,
+    discount: req.body.discount,
+    totalAmount: req.body.totalAmount,
+    customer_id: req.body.customer_id,
+    orderDate: req.body.Date,
+  };
   
-
-
-  //  order book Request
-  router.post("/bookOrder", (req, res) => {
-    let Orderdata = {
-      recipe_name: req.body.recipe_name,
-      qty: req.body.qty,
-      price: req.body.price,
-      address: req.body.address,
-      discount: req.body.discount,
-      totalAmount: req.body.totalAmount,
-      customer_id: req.body.customer_id,
-      orderDate: req.body.Date,
-    };
-    conn.query(
-      "insert into order_tbl set?",
-      Orderdata,
-      (err, rows, fields) => {}
-    );
-
+  conn.query(
+    "insert into order_tbl set?",
+    Orderdata,
+    (err, rows, fields) => {}
+  );
 });
 
 // cancel order request
@@ -40,6 +37,19 @@ router.post("/cancelOrder", (req, res) => {
   );
 });
 
+//All my orders
+router.post("/allOrders", (req, res) => {
+  let customerid = req.body.customerId;
+  conn.query(
+    "select * from order_tbl where customer_id= ?",
+    [customerid],
+    (err, rows, fields) => {
+      res.send(rows);
+     
+    }
+  );
+});
+
 ///Show order History
 router.get("/Orderhistory", (req, res) => {
   conn.query(
@@ -50,7 +60,6 @@ router.get("/Orderhistory", (req, res) => {
   );
 });
 
-
 // Order Summary for Admin
 router.get("/ordersummary", (req, res) => {
   conn.query(
@@ -60,8 +69,6 @@ router.get("/ordersummary", (req, res) => {
     }
   );
 });
-
-
 
 //change status
 router.post("/changeStatus", (req, res) => {
@@ -74,20 +81,17 @@ router.post("/changeStatus", (req, res) => {
   );
 });
 
-
 // show Current Date order
 router.post("/currentDateOrder", (req, res) => {
-  let crDate = req.body.qDate;
+  let crDate = req.body.queryDate;
+  let customer_id = req.body.customerId;
   conn.query(
-    "select * from order_tbl where orderDate= ?",
-    [crDate],
+    "select * from order_tbl where orderDate= ? and customer_id=?",
+    [crDate, customer_id],
     (err, rows, fields) => {
       res.send(rows);
     }
   );
 });
-
-
-
 
 module.exports = router;

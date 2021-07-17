@@ -246,13 +246,12 @@ body {
   display: flex;
 }
 #addList span textarea {
-  border-radius: 20px;
+  border-radius: 8px;
   outline: 0;
-  width: 200px;
-  height: 40px;
   padding: 10px;
   font-size: 15px;
   resize: none;
+  width: 100%;
 }
 #crossIcon {
   position: absolute;

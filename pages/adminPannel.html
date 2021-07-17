@@ -1,117 +1,141 @@
 <head>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 </head>
 <div class="admin" ng-class="{slide:isSlide}">
-    <div class="adminContainer">
-        <div class="adminHeader" ng-init="isSlide=false">
-            <div class="hamberg"><span ng-click="isSlide=!isSlide"><i id="hamberg" ng-class="{'fas fa-times':isSlide,'fas fa-bars':!isSlide}"></i></span>
-    
-
-            </div>
-            <div class="adminprof">
-                <a href="#!"><i class="fas fa-user"></i></a>
-            </div>
-        </div>
+  <div class="adminContainer">
+    <div class="adminHeader" ng-init="isSlide=false">
+      <div class="hamberg">
+        <span ng-click="isSlide=!isSlide"
+          ><i
+            id="hamberg"
+            ng-class="{'fas fa-times':isSlide,'fas fa-bars':!isSlide}"
+          ></i
+        ></span>
+      </div>
+      <div class="adminprof">
+        <a href="#!"><i class="fas fa-user"></i></a>
+      </div>
     </div>
-    <div class="adminMenu">
-        <div class="profile">
-            <span class="logoAdmin"><i class="fas fa-user"></i></span>
-            <span class="username">{{loginName.name}}</span>
-        </div>
-        <ul>
-            <li>
-                <div class="item">
-                    <div class="adminlogo"><i class="fas fa-home"></i></div><span><a href="/">Home</a></span>
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    <div class="adminlogo"><i class="far fa-minus-square"></i></div><span ng-click="Summary()"><a
-                            href="">Summary</a></span>
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    <div class="adminlogo"><i class="fab fa-first-order-alt"></i></div><span ng-click="showTales()"><a
-                            href="">Order
-                            History</a></span>
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    <div class="adminlogo"><i class="far fa-question-circle"></i></div><span><a href="">FAQ's
-                        </a></span>
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    <div class="adminlogo"><i class="fas fa-sign-out-alt"></i></div><span ng-click="logOut()"><a
-                            href="">Log Out</a></span>
-                </div>
-            </li>
-        </ul>
+  </div>
+  <div class="adminMenu">
+    <div class="profile">
+      <span class="logoAdmin"><i class="fas fa-user"></i></span>
+      <span class="username">{{loginName.name}}</span>
     </div>
-    <div class="tblDetails">
-        <div class="tblContainer">
-            <table class="Ordertable" ng-if="isOrderDetails">
-                <tr>
-                    <th>Product Id</th>
-                    <th>Order Status</th>
-                    <th>Receipe Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Discount</th>
-                    <th>Total Amount</th>
-                    <th>Customer Id</th>
-                    <th>Address</th>
-                    <th>Order Date</th>
-                </tr>
-                <tr ng-repeat=" order in orderDetails">
-                    <td>{{order.order_id}}</td>
-                    <td>
-                        <select ng-model="statuss" ng-change="change()" ng-options=" item for item in status">
-                            <option value="" selected="selected">{{order.order_status}}</option>
-                        </select>
-                        <button ng-click="changeStatus(statuss,order.order_id)">Change Status</button>
-                    </td>
-                    <td>{{order.recipe_name}}</td>
-                    <td>{{order.price}}</td>
-                    <td>{{order. qty}}</td>
-                    <td>{{order.discount}}</td>
-                    <td>{{order.totalAmount}}</td>
-                    <td>{{order.customer_id}}</td>
-                    <td>{{order.address}}</td>
-                    <td>{{order.orderDate|date:"yyyy-MM-dd"}}</td>
-                </tr>
-            </table>
-
-
-            <table class="Ordertable" ng-if="isHistory">
-                <tr>
-                    <th>Product Id</th>
-                    <th>Order Status</th>
-                    <th>Receipe Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Discount</th>
-                    <th>Total Amount</th>
-                    <th>Customer Id</th>
-                    <th>Address</th>
-                    <th>Order Date</th>
-                </tr>
-                <tr ng-repeat=" order in orderHistory">
-                    <td>{{order.order_id}}</td>
-                    <td>{{order.order_status}}<span><i class="far fa-check-circle"></i></span></td>
-                    <td>{{order.recipe_name}}</td>
-                    <td>{{order.price}}</td>
-                    <td>{{order. qty}}</td>
-                    <td>{{order.discount}}</td>
-                    <td>{{order.totalAmount}}</td>
-                    <td>{{order.customer_id}}</td>
-                    <td>{{order.address}}</td>
-                    <td>{{order.orderDate|date:"fullDate"}}</td>
-                </tr>
-            </table>
+    <ul>
+      <li>
+        <div class="item">
+          <div class="adminlogo"><i class="fas fa-home"></i></div>
+          <span><a href="/">Home</a></span>
         </div>
+      </li>
+      <li>
+        <div class="item">
+          <div class="adminlogo"><i class="far fa-minus-square"></i></div>
+          <span ng-click="Summary()"><a href="">Summary</a></span>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <div class="adminlogo"><i class="fab fa-first-order-alt"></i></div>
+          <span ng-click="showTales()"><a href="">Order History</a></span>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <div class="adminlogo"><i class="far fa-question-circle"></i></div>
+          <span><a href="">FAQ's </a></span>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <div class="adminlogo"><i class="fas fa-sign-out-alt"></i></div>
+          <span ng-click="logOut()"><a href="">Log Out</a></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tblDetails">
+    <div class="filterContainer" ng-if="isHistory">
+        Filter :
+        <select ng-model="filter" ng-change="">
+          <option value="" selected="selected">All</option>
+          <option value="">Last month</option>
+          <option value="">Today</option>
+        </select>
+      </div>
+    <div class="tblContainer">
+      <table class="Ordertable" ng-if="isOrderDetails">
+        <tr>
+          <th>Product Id</th>
+          <th>Order Status</th>
+          <th>Receipe Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Discount</th>
+          <th>Total Amount</th>
+          <th>Customer Id</th>
+          <th>Address</th>
+          <th>Order Date</th>
+        </tr>
+        <tr ng-repeat=" order in orderDetails">
+          <td>{{order.order_id}}</td>
+          <td>
+            <select
+              ng-model="statuss"
+              ng-change="change()"
+              ng-options=" item for item in status"
+            >
+              <option value="" selected="selected">
+                {{order.order_status}}
+              </option>
+            </select>
+            <button ng-click="changeStatus(statuss,order.order_id)">
+              Change Status
+            </button>
+          </td>
+          <td>{{order.recipe_name}}</td>
+          <td>{{order.price}}</td>
+          <td>{{order. qty}}</td>
+          <td>{{order.discount}}</td>
+          <td>{{order.totalAmount}}</td>
+          <td>{{order.customer_id}}</td>
+          <td>{{order.address}}</td>
+          <td>{{order.orderDate|date:"yyyy-MM-dd"}}</td>
+        </tr>
+      </table>
+
+     
+      <table class="Ordertable" ng-if="isHistory">
+        <tr>
+          <th>Product Id</th>
+          <th>Order Status</th>
+          <th>Receipe Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Discount</th>
+          <th>Total Amount</th>
+          <th>Customer Id</th>
+          <th>Address</th>
+          <th>Order Date</th>
+        </tr>
+        <tr ng-repeat=" order in orderHistory">
+          <td>{{order.order_id}}</td>
+          <td>
+            {{order.order_status}}<span
+              ><i class="far fa-check-circle"></i
+            ></span>
+          </td>
+          <td>{{order.recipe_name}}</td>
+          <td>{{order.price}}</td>
+          <td>{{order. qty}}</td>
+          <td>{{order.discount}}</td>
+          <td>{{order.totalAmount}}</td>
+          <td>{{order.customer_id}}</td>
+          <td>{{order.address}}</td>
+          <td>{{order.orderDate|date:"fullDate"}}</td>
+        </tr>
+      </table>
     </div>
+  </div>
 </div>

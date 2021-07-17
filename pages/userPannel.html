@@ -90,15 +90,17 @@
                     <th>Order Date</th>
                     <th>Receipe Name</th>
                     <th>Quantity</th>
+                    <th>Address</th>
                     <th>Total Amount</th>
                     <th class="track">Order Tracker<span><i class="fas fa-truck"></i></span></th>
 
                 </tr>
                 <tr ng-repeat=" order in progressData">
-                    <td><button ng-click="deleteRecord(order.order_id)" class="cancelBtn">Cancel Order</button></td>
+                    <td><button ng-click="deleteRecord(order.order_id)" ng-disabled="order.dynamic==100" class="cancelBtn">Cancel Order</button></td>
                     <td>{{order.orderDate|date:"yyyy-MM-dd"}}</td>
                     <td>{{order.recipe_name}}</td>
                     <td>{{order. qty}}</td>
+                    <td>{{order. address}}</td>
                     <td>{{order.totalAmount}}</td>
                     <td class="progressBar">
                         <div class="statusBar">
