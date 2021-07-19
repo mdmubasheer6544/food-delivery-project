@@ -57,13 +57,13 @@
   </div>
   <div class="tblDetails">
     <div class="filterContainer" ng-if="isHistory">
-        Filter :
-        <select ng-model="filter" ng-change="">
-          <option value="" selected="selected">All</option>
-          <option value="">Last month</option>
-          <option value="">Today</option>
-        </select>
-      </div>
+      Filter :
+      <select ng-model="filter" ng-change="onFilterHandler(filter)">
+        <option value="All" selected="selected">All</option>
+        <option value="lastMonth">Last month</option>
+        <option value="today">Today</option>
+      </select>
+    </div>
     <div class="tblContainer">
       <table class="Ordertable" ng-if="isOrderDetails">
         <tr>
@@ -105,7 +105,6 @@
         </tr>
       </table>
 
-     
       <table class="Ordertable" ng-if="isHistory">
         <tr>
           <th>Product Id</th>

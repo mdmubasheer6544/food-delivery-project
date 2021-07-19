@@ -246,17 +246,27 @@ app.controller("adminController", function ($scope, $http, $location) {
   };
   $scope.isHistory = false;
   $scope.isOrderDetails = true;
-  $scope.Orderhistory = function () {
-    $scope.orderHistory = [];
-    $http.get("order/Orderhistory").then((res) => {
+  $scope.orderHistory = [];
+
+
+  //add Filter Order history
+
+  $scope.onFilterHandler=(filter)=>{
+    const data={filter:filter}
+    $http.post("order/Orderhistory",JSON.stringify(data)).then((res) => {
       $scope.orderHistory = res.data;
     });
-  };
+   
+  }
+
+
+
+
   //show tables
   $scope.showTales = function () {
     $scope.isHistory = true;
     $scope.isOrderDetails = false;
-    $scope.Orderhistory();
+    $scope.onFilterHandler("All");
   };
 
   $scope.Summary = function () {

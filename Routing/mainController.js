@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
         }).when('/userProf', {
             templateUrl: '../pages/userPannel.html',
             controller: ''
-        }).when('/adminProf', {
+        }).when('/adminProf/', {
             templateUrl: '../pages/adminPannel.html',
             controller: 'adminController'
             

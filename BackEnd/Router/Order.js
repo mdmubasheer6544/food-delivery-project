@@ -17,7 +17,7 @@ router.post("/bookOrder", (req, res) => {
     customer_id: req.body.customer_id,
     orderDate: req.body.Date,
   };
-  
+
   conn.query(
     "insert into order_tbl set?",
     Orderdata,
@@ -45,19 +45,35 @@ router.post("/allOrders", (req, res) => {
     [customerid],
     (err, rows, fields) => {
       res.send(rows);
-     
     }
   );
 });
 
-///Show order History
-router.get("/Orderhistory", (req, res) => {
-  conn.query(
-    "Select * from order_tbl where order_status='Order Delivered'",
-    (err, rows, fields) => {
-      res.send(rows);
-    }
-  );
+///Show order History for last month,tody date,All
+router.post("/Orderhistory", (req, res) => {
+  const { filter } = req.body;
+  let query;
+  if (filter === "lastMonth") {
+    query =
+      "select * from food_db.order_tbl where month(orderDate)=month(now())-1 and order_status='Order Delivered'";
+  } else if (filter === "today") {
+    let currentDate = new Date();
+    const todayDate =
+      currentDate.getFullYear() +
+      "-" +
+      (currentDate.getMonth() + 1) +
+      "-" +
+      currentDate.getDate();
+    console.log(todayDate);
+    query = `select * from food_db.order_tbl where orderDate = '${todayDate}' and order_status ='Order Delivered'`;
+    console.log(query);
+  } else if (filter === "All") {
+    query = `Select * from food_db.order_tbl where order_status='Order Delivered'`;
+  }
+  conn.query(query, (err, rows, fields) => {
+    res.send(rows);
+    console.log(rows);
+  });
 });
 
 // Order Summary for Admin
